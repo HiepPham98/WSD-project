@@ -14,7 +14,10 @@
         //checking-in date
         public DateOnly CheckIn { get; set; }
 
+        //check-out date
         public DateOnly CheckOut { get; set; }
+
+
 
 
 
