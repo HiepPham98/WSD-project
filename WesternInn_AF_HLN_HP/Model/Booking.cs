@@ -1,4 +1,7 @@
-﻿namespace WesternInn_AF_HLN_HP.Model
+﻿using System.ComponentModel.DataAnnotations;
+using WesternInn_AF_HLN_HP.Pages.Room;
+
+namespace WesternInn_AF_HLN_HP.Model
 {
     public class Booking
     {
@@ -17,9 +20,11 @@
         //check-out date
         public DateOnly CheckOut { get; set; }
 
+        public decimal Cost { get; set; }
 
-
-
+        //Navigation Properties
+        public Room? TheRoom { get; set; }
+        public Guest? TheGuest { get; set; }
 
     }
 }
