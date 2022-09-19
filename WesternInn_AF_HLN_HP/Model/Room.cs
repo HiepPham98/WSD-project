@@ -4,11 +4,11 @@
     {
         public int ID { get; set; }
 
-        public string level { get; set; }
+        public string Level { get; set; } = string.Empty;
 
-        public int bedCount { get; set; }
+        public int BedCount { get; set; }
 
-        public decimal price { get; set; }
+        public decimal Price { get; set; }
 
 
     }
