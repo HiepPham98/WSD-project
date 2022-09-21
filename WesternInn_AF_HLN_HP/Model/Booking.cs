@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using WesternInn_AF_HLN_HP.Pages.Room;
 
 namespace WesternInn_AF_HLN_HP.Model
 {

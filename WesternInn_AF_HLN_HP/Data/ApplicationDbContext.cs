@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using WesternInn_AF_HLN_HP.Model;
 
 namespace WesternInn_AF_HLN_HP.Data
 {
@@ -9,5 +10,6 @@ namespace WesternInn_AF_HLN_HP.Data
             : base(options)
         {
         }
+        public DbSet<WesternInn_AF_HLN_HP.Model.Guest> Guest { get; set; }
     }
 }

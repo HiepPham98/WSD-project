@@ -24,7 +24,7 @@ namespace WesternInn_AF_HLN_HP.Model
         public decimal Price { get; set; }
 
         //Navigation properties
-        public ICollection<Booking> TheBookings { get; set; }
+        public ICollection<Booking>? TheBookings { get; set; }
 
     }
 }
