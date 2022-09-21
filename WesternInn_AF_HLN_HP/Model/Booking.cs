@@ -19,6 +19,7 @@ namespace WesternInn_AF_HLN_HP.Model
         //check-out date
         public DateOnly CheckOut { get; set; }
 
+        [Range(0,10000)]
         public decimal Cost { get; set; }
 
         //Navigation Properties
