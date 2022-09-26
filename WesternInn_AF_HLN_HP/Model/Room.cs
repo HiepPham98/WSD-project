@@ -10,7 +10,7 @@ namespace WesternInn_AF_HLN_HP.Model
 
         //room level
         [RegularExpression(@"^[g,1,2,3]$", 
-            ErrorMessage ="Room Level must be 'g','1','2','3'")]
+            ErrorMessage = "Room Level must be 'g','1','2','3'")]
         [Required]
         public string Level { get; set; } = string.Empty;
 
