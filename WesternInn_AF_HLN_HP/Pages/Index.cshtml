@@ -4,7 +4,66 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1500">
+
+    <!-- Indicators -->
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="4"></button>
+    </div>
+
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/images/1.jpg" class="d-block w-100" alt="room1" />
+            <div class="carousel-caption">
+                <h3>
+                    nothing
+                </h3>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="~/images/2.jpg" class="d-block w-100" alt="room2" />
+            <div class="carousel-caption">
+                <h3>
+                    things
+                </h3>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="~/images/3.jpg" class="d-block w-100" alt="room3" />
+            <div class="carousel-caption">
+                <h3>
+                    whoknowthing
+                </h3>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="~/images/4.jpg" class="d-block w-100" alt="room4" />
+            <div class="carousel-caption">
+                <h3>
+                    anotherthing
+                </h3>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="~/images/5.jpg" class="d-block w-100" alt="room5" />
+            <div class="carousel-caption">
+                <h3>
+                    something
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <button type="button" class="carousel-control-prev" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button type="button" class="carousel-control-next" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
 </div>
