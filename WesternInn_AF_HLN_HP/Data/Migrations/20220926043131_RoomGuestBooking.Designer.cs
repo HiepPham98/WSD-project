@@ -11,8 +11,8 @@ using WesternInn_AF_HLN_HP.Data;
 namespace WesternInn_AF_HLN_HP.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220921073150_addGuests")]
-    partial class addGuests
+    [Migration("20220926043131_RoomGuestBooking")]
+    partial class RoomGuestBooking
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
