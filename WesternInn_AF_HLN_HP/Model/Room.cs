@@ -20,6 +20,7 @@ namespace WesternInn_AF_HLN_HP.Model
         public int BedCount { get; set; }
 
         //price per night
+        [DataType(DataType.Currency)]
         [Range(50,300)]
         public decimal Price { get; set; }
 
