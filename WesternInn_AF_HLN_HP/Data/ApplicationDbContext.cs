@@ -11,5 +11,7 @@ namespace WesternInn_AF_HLN_HP.Data
         {
         }
         public DbSet<WesternInn_AF_HLN_HP.Model.Guest> Guest { get; set; }
+        public DbSet<WesternInn_AF_HLN_HP.Model.Booking> Booking { get; set; }
+        public DbSet<WesternInn_AF_HLN_HP.Model.Room> Room { get; set; }
     }
 }
