@@ -16,7 +16,7 @@ namespace WesternInn_AF_HLN_HP.Model
 
         //number of beds per room
         [RegularExpression(@"^[1,2,3]$",
-            ErrorMessage = "Number of beds must be 'g','1','2','3'")]
+            ErrorMessage = "Number of beds must be '1','2', or '3'")]
         public int BedCount { get; set; }
 
         //price per night

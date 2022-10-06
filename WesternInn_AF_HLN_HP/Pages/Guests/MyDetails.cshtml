@@ -1,0 +1,75 @@
+﻿@page
+@model WesternInn_AF_HLN_HP.Pages.Guests.MyDetailsModel
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "MyDetails";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h2>My Details</h2>
+
+@if ((string)ViewData["ExistInDB"] == "true")
+{
+    <h4>Welcome, @UserManager.GetUserName(User)! You can edit your details below. </h4>
+}
+else
+{
+    <h4>Welcome, @UserManager.GetUserName(User)! You should enter your details below before browsing other links. </h4>
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if ((string)ViewData["ExistInDB"] == "true")
+            {
+                @* The value of the email is bound with the model. *@
+                <input type="hidden" asp-for="Myself.Email"/>
+            }
+            else
+            {
+                @* The dummy value of the email is only for passing the validation.
+                    It won't be used at all.     *@
+                <input type="hidden" asp-for="Myself.Email" value="dummy@dummy.edu"/>
+            }
+            <div class="form-group">
+                <label asp-for="Myself.GivenName" class="control-label"></label>
+                <input asp-for="Myself.GivenName" class="form-control" />
+                <span asp-validation-for="Myself.GivenName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Myself.Surname" class="control-label"></label>
+                <input asp-for="Myself.Surname" class="form-control" />
+                <span asp-validation-for="Myself.Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Myself.Postcode" class="control-label"></label>
+                <input asp-for="Myself.Postcode" class="form-control" />
+                <span asp-validation-for="Myself.Postcode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (ViewData["SuccessDB"] != null)
+{
+    <hr />
+    <h5> Thanks. You have successfully updated your details with your name 
+    <strong>@Model.Myself.GivenName @Model.Myself.Surname</strong>
+    and your Postcode number <strong>@Model.Myself.Postcode</strong>. 
+    </h5>
+    <h5> You can start browsing other links now.</h5>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
