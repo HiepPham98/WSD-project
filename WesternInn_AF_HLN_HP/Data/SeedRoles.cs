@@ -9,39 +9,40 @@ namespace WesternInn_AF_HLN_HP.Data
             // Get the RoleManager and the UserManager objects
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var UserManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
-            // Include role name here
-            string[] roleNames = { "administrators", "guests" };
+            // Include your role names here
+            string[] roleNames = { "Administrator", "Guest" };
             IdentityResult roleResult;
 
             foreach (var roleName in roleNames)
             {
-                // check whether roles already exists
-                var roleExists = await RoleManager.RoleExistsAsync(roleName);
-                if (!roleExists)
+                // check whether the role already exists
+                var roleExist = await RoleManager.RoleExistsAsync(roleName);
+                if (!roleExist)
                 {
-                    //creating the roles
+                    // creating the roles
                     roleResult = await RoleManager.CreateAsync(new IdentityRole(roleName));
                 }
             }
 
-            //creating an admin user who will maintain the web app
-            //His/her configuration are read from the configuration file: asp.settings
-            var powerUser = new IdentityUser
+            // Creating an admin user who will maintain the web app
+            // His/her username are read from the configuration file: appsettings.json
+            var poweruser = new IdentityUser
             {
                 UserName = Configuration.GetSection("UserSettings")["UserEmail"],
                 Email = Configuration.GetSection("UserSettings")["UserEmail"]
             };
+
             string userPassword = Configuration.GetSection("UserSettings")["UserPassword"];
             var user = await UserManager.FindByEmailAsync(Configuration.GetSection("UserSettings")["UserEmail"]);
             // if this admin user doesn't exist in the database, ​create it in the database;
             // otherwise, do nothing.
             if (user == null)
             {
-                var createPowerUser = await UserManager.CreateAsync(powerUser, userPassword);
+                var createPowerUser = await UserManager.CreateAsync(poweruser, userPassword);
                 if (createPowerUser.Succeeded)
                 {
                     // here we assign the new user the "Admin" role 
-                    await UserManager.AddToRoleAsync(powerUser, "administrators");
+                    await UserManager.AddToRoleAsync(poweruser, "Administrator");
                 }
             }
         }
