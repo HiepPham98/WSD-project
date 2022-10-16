@@ -26,6 +26,7 @@ namespace WesternInn_AF_HLN_HP.Pages.Bookings
             if (_context.Booking != null)
             {
                 Booking = await _context.Booking
+                    
                 .Include(b => b.TheRoom).ToListAsync();
             }
         }

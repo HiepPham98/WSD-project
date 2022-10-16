@@ -21,7 +21,7 @@ namespace WesternInn_AF_HLN_HP.Pages.Bookings
 
         public IActionResult OnGet()
         {
-        ViewData["RoomID"] = new SelectList(_context.Set<Room>(), "ID", "Level");
+        ViewData["RoomID"] = new SelectList(_context.Room, "ID", "Level");
             return Page();
         }
 

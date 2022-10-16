@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WesternInn_AF_HLN_HP.Model
 {
@@ -11,13 +12,21 @@ namespace WesternInn_AF_HLN_HP.Model
         public int RoomID { get; set; }
 
         //foreign key
+        [Key,Required]
+        [DataType(DataType.EmailAddress)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Display(Name ="Guest Email")]
         public string GuestEmail = string.Empty;
 
         //checking-in date
-        public DateOnly CheckIn { get; set; }
+        [Display(Name = "Check In")]
+        [DataType(DataType.Date)]
+        public DateTime CheckIn { get; set; }
 
         //check-out date
-        public DateOnly CheckOut { get; set; }
+        [Display(Name = "Check Out")]
+        [DataType(DataType.Date)]
+        public DateTime CheckOut { get; set; }
 
         [Range(0,10000)]
         public decimal Cost { get; set; }
