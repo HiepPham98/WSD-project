@@ -1,0 +1,92 @@
+﻿@page
+@model WesternInn_AF_HLN_HP.Pages.Bookings.SearchRoomModel
+@{
+}
+
+<h2>Search for a room</h2>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <input asp-for="Room.Level" value="G" type="hidden" />
+            <input asp-for="Room.Price" value="100" type="hidden" />
+
+            <div class="form-group">
+                <label asp-for="Room.BedCount" class="control-label">Bed Count</label>
+                <select asp-for="Room.BedCount" class="form-control" asp-items="ViewBag.BedCountList"></select>
+                <span asp-validation-for="Room.BedCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Booking.CheckIn" class="control-label">Check In Date</label>
+                <input asp-for="Booking.CheckIn" class="form-control" />
+                <span asp-validation-for="Booking.CheckIn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Booking.CheckOut" class="control-label">Check Out Date</label>
+                <input asp-for="Booking.CheckOut" class="form-control" />
+                <span asp-validation-for="Booking.CheckOut" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+@if(Model.AvailableRooms != null)
+{
+    <div>
+        <hr/>
+        @if(Model.AvailableRooms.Count == 0)
+        {
+            <h4>
+                There is no Room with @Model.Room.BedCount beds availabled for booking left during the selected period!<br/>
+            </h4>
+        }
+        else
+        {
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AvailableRooms[0].ID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AvailableRooms[0].Level)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AvailableRooms[0].BedCount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AvailableRooms[0].Price)
+                    </th>
+                </tr>
+                @foreach (var item in Model.AvailableRooms)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Level)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BedCount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
