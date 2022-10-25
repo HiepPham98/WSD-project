@@ -1,6 +1,6 @@
 ﻿@page
 @model WesternInn_AF_HLN_HP.Pages.Bookings.CreateModel
-
+@inject UserManager<IdentityUser> UserManager
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Pages/Shared/_Layout.cshtml";
@@ -13,6 +13,17 @@
 <div class="row">
     <div class="col-md-4">
         <form method="post">
+            @if ((string)ViewData["ExistInDB"] == "true")
+            {
+                @* The value of the email is bound with the model. *@
+                <input type="hidden" asp-for="Booking.GuestEmail" />
+            }
+            else
+            {
+                @* The dummy value of the email is only for passing the validation.
+            It won't be used at all.     *@
+                <input type="hidden" asp-for="Booking.GuestEmail" value="@UserManager.GetUserName(User)" />
+            }
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Booking.RoomID" class="control-label"></label>
@@ -29,9 +40,9 @@
                 <span asp-validation-for="Booking.CheckOut" class="text-danger"></span>
             </div>
             <div class="form-group">
-               @* <label asp-for="Booking.Cost" class="control-label"></label>*@
-                <input type="hidden" asp-for="Booking.Cost" class="form-control" />
-                @*<span asp-validation-for="Booking.Cost" class="text-danger"></span>*@
+                <label asp-for="Booking.Cost" class="control-label"></label>
+                <input type="hidden" asp-for="Booking.Cost" value = "1" class="form-control" />
+                <span asp-validation-for="Booking.Cost" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

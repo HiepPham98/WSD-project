@@ -12,7 +12,7 @@ using WesternInn_AF_HLN_HP.Model;
 namespace WesternInn_AF_HLN_HP.Pages.Bookings
 {
     [Authorize(Roles="Guest")]
-    [Authorize(Roles ="Administrator")]
+
     public class CreateModel : PageModel
     {
         private readonly WesternInn_AF_HLN_HP.Data.ApplicationDbContext _context;
@@ -47,23 +47,19 @@ namespace WesternInn_AF_HLN_HP.Pages.Bookings
              */
             var success = await TryUpdateModelAsync<Booking>(emptyBooking, "Booking",
                                 s => s.RoomID, s => s.GuestEmail, s => s.CheckIn, s => s.CheckOut);
-           /* if (success)
+           if (success)
             {
-                var theBooking = await _context.Burger.FindAsync(emptyPurchase.BurgerID);
+                var theRoom = await _context.Room.FindAsync(emptyBooking.RoomID);
                 //calculate the total price of this oreder
-                emptyPurchase.TotalCost = emptyPurchase.BurgerCount * theBurger.Price;
+                emptyBooking.Cost = emptyBooking.BurgerCount * theRoom.Price;
 
                 // add this newly-created order into db
-                _context.Purchase.Add(emptyPurchase);
+                _context.Booking.Add(emptyBooking);
 
                 await _context.SaveChangesAsync();
-                if (purchase != null)
-                {
-                    //double totalCost = 0;
-                    ViewData["TotalCost"] = (double)emptyPurchase.TotalCost;
-
-                }
-                ViewData["BurgerName"] = theBurger.BurgerName;
+               
+                
+              
                 return Page();
             }*/
 
