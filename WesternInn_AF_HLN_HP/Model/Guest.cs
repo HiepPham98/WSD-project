@@ -21,6 +21,9 @@ namespace WesternInn_AF_HLN_HP.Model
         [RegularExpression("^[A-z-']{2,20}")]
         public string GivenName { get; set; } = String.Empty;
 
+        [NotMapped] // not mapping this property to database, but exist in memory
+        public string FullName => $"{GivenName} {Surname}";
+
         [RegularExpression(@"^[0-9]{4}$")]
         public string Postcode { get; set; } = String.Empty;
 

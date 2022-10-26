@@ -11,8 +11,8 @@ using WesternInn_AF_HLN_HP.Model;
 
 namespace WesternInn_AF_HLN_HP.Pages.Bookings
 {
-    [Authorize(Roles="Guest")]
-
+    [Authorize(Roles= "Guest,Administrator")]
+    
     public class CreateModel : PageModel
     {
         private readonly WesternInn_AF_HLN_HP.Data.ApplicationDbContext _context;
@@ -21,10 +21,10 @@ namespace WesternInn_AF_HLN_HP.Pages.Bookings
         {
             _context = context;
         }
-
         public IActionResult OnGet()
-        {
-        ViewData["RoomID"] = new SelectList(_context.Room, "ID", "ID");
+        { 
+            ViewData["RoomID"] = new SelectList(_context.Room, "ID", "ID");
+            ViewData["GuestEmail"] = new SelectList(_context.Guest, "Email", "FullName");
             return Page();
         }
 
@@ -57,9 +57,6 @@ namespace WesternInn_AF_HLN_HP.Pages.Bookings
                 _context.Booking.Add(emptyBooking);
 
                 await _context.SaveChangesAsync();
-               
-                
-              
                 return Page();
             }
 

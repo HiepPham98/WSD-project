@@ -24,6 +24,13 @@
             It won't be used at all.     *@
                 <input type="hidden" asp-for="Booking.GuestEmail" value="@UserManager.GetUserName(User)" />
             }
+            @if (User.IsInRole("Administrator"))
+            {
+                <div class="form-group">
+                    <label asp-for="Booking.RoomID" class="control-label"></label>
+                    <select asp-for="Booking.RoomID" class="form-control" asp-items="ViewBag.GuestEmail"></select>
+                </div>
+            }
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Booking.RoomID" class="control-label"></label>

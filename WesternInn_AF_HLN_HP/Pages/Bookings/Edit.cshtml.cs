@@ -36,7 +36,8 @@ namespace WesternInn_AF_HLN_HP.Pages.Bookings
                 return NotFound();
             }
             Booking = booking;
-           ViewData["RoomID"] = new SelectList(_context.Set<Room>(), "ID", "Level");
+            ViewData["RoomID"] = new SelectList(_context.Set<Room>(), "ID", "ID");
+            ViewData["GuestEmail"] = new SelectList(_context.Guest, "Email", "FullName");
             return Page();
         }
 
