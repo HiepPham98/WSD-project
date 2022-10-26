@@ -1,0 +1,78 @@
+﻿@page
+@model WesternInn_AF_HLN_HP.Pages.Bookings.MyBookingsModel
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>My Bookings</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            @* Rearranging the order of the columns is needed if the scaffolding 
+                doesn't do a good job.
+            *@
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].TheGuest.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].TheGuest.GivenName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].RoomID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].CheckIn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].CheckOut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].Cost)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Booking.Where(n => n.GuestEmail == "@UserManager.GetUserName(User)")) {
+        <tr>
+            @* Rearranging the order of the columns is needed if the scaffolding 
+                doesn't do a good job.
+            *@
+            <td>
+                @* @Html.DisplayFor(modelItem => item.TheMovie.Genre) *@
+                @* The warning about a possible null reference is fine. *@
+            </td>
+            <td>
+                @* @Html.DisplayFor(modelItem => item.TheMovieGoer.Email) *@
+                @Html.DisplayFor(modelItem => item.TheGuest.Surname)
+                @Html.DisplayFor(modelItem => item.TheGuest.GivenName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckOut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

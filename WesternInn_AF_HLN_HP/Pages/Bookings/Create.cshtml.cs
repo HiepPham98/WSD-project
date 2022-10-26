@@ -51,7 +51,7 @@ namespace WesternInn_AF_HLN_HP.Pages.Bookings
             {
                 var theRoom = await _context.Room.FindAsync(emptyBooking.RoomID);
                 //calculate the total price of this oreder
-                emptyBooking.Cost = emptyBooking.BurgerCount * theRoom.Price;
+                //emptyBooking.Cost = emptyBooking.BurgerCount * theRoom.Price;
 
                 // add this newly-created order into db
                 _context.Booking.Add(emptyBooking);
@@ -61,7 +61,7 @@ namespace WesternInn_AF_HLN_HP.Pages.Bookings
                 
               
                 return Page();
-            }*/
+            }
 
             _context.Booking.Add(Booking);
             await _context.SaveChangesAsync();
