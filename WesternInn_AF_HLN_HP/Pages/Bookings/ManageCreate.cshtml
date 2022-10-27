@@ -1,0 +1,75 @@
+﻿@page
+@model WesternInn_AF_HLN_HP.Pages.Bookings.ManageCreateModel
+@{
+    ViewData["Title"] = "Manage - Create Booking";
+}
+
+@if (User.IsInRole("Administrator"))
+{
+    <h1>Create</h1>
+
+    <h4>Booking</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+                <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                                <label asp-for="Booking.RoomID" class="control-label"></label>
+                                <select asp-for="Booking.RoomID" class="form-control" asp-items="ViewBag.ID"></select>
+                        </div>
+                        <div class="form-group">
+                                <label asp-for="Booking.TheGuest.FullName" class="control-label"></label>
+                                <select asp-for="Booking.GuestEmail" class="form-control" asp-items="ViewBag.GuestEmail"></select>
+                                <span asp-validation-for="Booking.TheGuest.FullName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                                <label asp-for="Booking.CheckIn" class="control-label"></label>
+                                <input asp-for="Booking.CheckIn" class="form-control" />
+                                <span asp-validation-for="Booking.CheckIn" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                                <label asp-for="Booking.CheckOut" class="control-label"></label>
+                                <input asp-for="Booking.CheckOut" class="form-control" />
+                                <span asp-validation-for="Booking.CheckOut" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                                <label asp-for="Booking.Cost" class="control-label"></label>
+                                <input asp-for="Booking.Cost" class="form-control" />
+                                <span asp-validation-for="Booking.Cost" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                </form>
+        </div>
+    </div>
+
+    <div>
+        @if (ViewData["Success"] != null)
+        {
+            <hr />
+            <p>
+                Successfully booked room <b>@Model.Booking.RoomID</b>, on level <b>@Model.Booking.TheRoom.Level</b>
+                for $@Model.Booking.Cost
+            </p>
+            <p>
+                Your check in date is <b>@Model.Booking.CheckIn</b> and your check out date is <b>@Model.Booking.CheckOut</b>
+            </p>
+        }
+        @if (ViewData["AlreadyBooked"] != null)
+        {
+            <p>
+                Room <b>@Model.Booking.RoomID</b> has already been booked. Please select another room.
+            </p>
+        }
+        @if (ViewData["oninvaliddate"] == "true")
+        {
+            <p>Check in date cannot be greater than check out date.</p>
+        }
+    </div>
+
+    <div>
+            <a asp-page="./AdminView">Back to Admin View</a>
+    </div>
+}

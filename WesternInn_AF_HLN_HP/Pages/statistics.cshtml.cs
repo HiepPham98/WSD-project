@@ -29,8 +29,8 @@ namespace WesternInn_AF_HLN_HP.Pages
             var postcodeGroup = _context.Guest.GroupBy(c => c.Postcode);
             var roomstatsGroup = _context.Booking.GroupBy(b => b.RoomID);
 
-            PostcodeStat = await postcodeGroup.Select(p => new PostcodeStats { Postcode = p.Key, Guests = p.Count() }).ToListAsync();
-            RoomStat = await roomstatsGroup.Select(p => new RoomStats { RoomID = p.Key, Bookings = p.Count() }).ToListAsync();
+            PostcodeStat = await postcodeGroup.Select(n => new PostcodeStats { Postcode = n.Key, Guests = n.Count() }).ToListAsync();
+            RoomStat = await roomstatsGroup.Select(n => new RoomStats { RoomID = n.Key, Bookings = n.Count() }).ToListAsync();
 
             return Page();
         }
