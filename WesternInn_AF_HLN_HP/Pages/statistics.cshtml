@@ -1,0 +1,53 @@
+﻿@page
+@model WesternInn_AF_HLN_HP.Pages.StatisticsModel
+@{
+}
+
+<h2>Customer Distribution With Respect to Postcodes</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(p => p.PostcodeStat[0].Postcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(p => p.PostcodeStat[0].Guests)
+        </th>
+    </tr>
+
+    @foreach (var item in Model.PostcodeStat)
+    {
+        <tr>
+            <th>
+                @Html.DisplayFor(modelItem => item.Postcode)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.Guests)
+            </th>
+        </tr>
+    }
+</table>
+
+<h2>Booking Distribution With Respect to Rooms</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(p => p.RoomStat[0].RoomID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(p => p.RoomStat[0].Bookings)
+        </th>
+    </tr>
+
+    @foreach (var item in Model.RoomStat)
+    {
+        <tr>
+            <th>
+                @Html.DisplayFor(modelItem => item.RoomID)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => item.Bookings)
+            </th>
+        </tr>
+    }
+</table>
