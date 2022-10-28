@@ -21,12 +21,12 @@ namespace WesternInn_AF_HLN_HP.Model
         //checking-in date
         [Display(Name = "Check In")]
         [DataType(DataType.Date)]
-        public DateTime CheckIn { get; set; }
+        public DateOnly CheckIn { get; set; }
 
         //check-out date
         [Display(Name = "Check Out")]
         [DataType(DataType.Date)]
-        public DateTime CheckOut { get; set; }
+        public DateOnly CheckOut { get; set; }
 
         [Range(0,10000)]
         [DataType(DataType.Currency)]

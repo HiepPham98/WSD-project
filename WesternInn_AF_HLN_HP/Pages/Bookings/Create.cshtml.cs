@@ -28,7 +28,7 @@ namespace WesternInn_AF_HLN_HP.Pages.Bookings
             return Page();
         }
 
-        [BindProperty]
+        [BindProperty(SupportsGet = true)]
         public Booking Booking { get; set; }
         
 
@@ -46,7 +46,7 @@ namespace WesternInn_AF_HLN_HP.Pages.Bookings
              *                    no updates, thus preventing overposting.
              */
             var success = await TryUpdateModelAsync<Booking>(emptyBooking, "Booking",
-                                s => s.RoomID, s => s.GuestEmail, s => s.CheckIn, s => s.CheckOut);
+                                s => s.RoomID, s => s.GuestEmail, s => s.CheckIn, s => s.CheckOut, s => s.Cost);
            if (success)
             {
                 var theRoom = await _context.Room.FindAsync(emptyBooking.RoomID);

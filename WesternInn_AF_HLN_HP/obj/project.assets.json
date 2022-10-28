@@ -10704,19 +10704,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hiepp\\.nuget\\packages\\": {}
+    "C:\\Users\\Gamer\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hiepp\\Desktop\\WSD\\WSD-project\\WesternInn_AF_HLN_HP\\WesternInn_AF_HLN_HP.csproj",
+      "projectUniqueName": "C:\\Users\\Gamer\\source\\repos\\HiepPham98\\WSD-project\\WSD-project\\WesternInn_AF_HLN_HP\\WesternInn_AF_HLN_HP.csproj",
       "projectName": "WesternInn_AF_HLN_HP",
-      "projectPath": "C:\\Users\\hiepp\\Desktop\\WSD\\WSD-project\\WesternInn_AF_HLN_HP\\WesternInn_AF_HLN_HP.csproj",
-      "packagesPath": "C:\\Users\\hiepp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hiepp\\Desktop\\WSD\\WSD-project\\WesternInn_AF_HLN_HP\\obj\\",
+      "projectPath": "C:\\Users\\Gamer\\source\\repos\\HiepPham98\\WSD-project\\WSD-project\\WesternInn_AF_HLN_HP\\WesternInn_AF_HLN_HP.csproj",
+      "packagesPath": "C:\\Users\\Gamer\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Gamer\\source\\repos\\HiepPham98\\WSD-project\\WSD-project\\WesternInn_AF_HLN_HP\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\hiepp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Gamer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10724,6 +10729,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
