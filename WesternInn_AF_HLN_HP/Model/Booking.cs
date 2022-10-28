@@ -29,6 +29,7 @@ namespace WesternInn_AF_HLN_HP.Model
         public DateTime CheckOut { get; set; }
 
         [Range(0,10000)]
+        [DataType(DataType.Currency)]
         public decimal Cost { get; set; }
 
         //Navigation Properties
