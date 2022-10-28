@@ -5,8 +5,70 @@
     ViewData["Title"] = "Index";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
+@if (User.IsInRole("Administrator"))
+{
+    <h1>Admin View Bookings</h1>
+    <p>
+        <a asp-page="ManageCreate">Create New</a>
+    </p>
 
-<h1>Index</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Booking[0].TheRoom.ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Booking[0].TheGuest.GivenName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Booking[0].TheGuest.Surname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Booking[0].CheckIn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Booking[0].CheckOut)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Booking[0].Cost)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Booking)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TheRoom.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TheGuest.GivenName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TheGuest.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CheckIn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CheckOut)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cost)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@if(User.IsInRole("Guest")){
+<h1>My Bookings</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
@@ -17,10 +79,7 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Booking[0].TheGuest.Surname)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Booking[0].TheGuest.GivenName)
+                    @Html.DisplayNameFor(model => model.Booking[0].TheGuest.FullName)
                 </th>
                 <th>
                     <a asp-page="Index" asp-route-sortorder="@ViewData["NextCheckInOrder"]">
@@ -46,10 +105,7 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TheGuest.Surname)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TheGuest.GivenName)
+                        @Html.DisplayFor(modelItem => item.TheGuest.FullName)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.CheckIn)
@@ -63,16 +119,11 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.TheRoom.ID)
                     </td>
-                @if ( User.IsInRole("Administrator")){
-                    <td>
-                        <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                        <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                    </td>
+                
                 }
                 </tr>
             }
         </tbody>
     </table>
-   
+  }
 

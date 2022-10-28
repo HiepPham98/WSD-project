@@ -20,13 +20,13 @@ namespace WesternInn_AF_HLN_HP.Model
 
         //checking-in date
         [Display(Name = "Check In")]
-        [DataType(DataType.Date)]
-        public DateOnly CheckIn { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime CheckIn { get; set; }
 
         //check-out date
         [Display(Name = "Check Out")]
-        [DataType(DataType.Date)]
-        public DateOnly CheckOut { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime CheckOut { get; set; }
 
         [Range(0,10000)]
         [DataType(DataType.Currency)]
@@ -36,5 +36,9 @@ namespace WesternInn_AF_HLN_HP.Model
         public Room? TheRoom { get; set; }
         public Guest? TheGuest { get; set; }
 
+        internal object parse(object checkIn)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
