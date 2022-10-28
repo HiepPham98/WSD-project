@@ -27,14 +27,26 @@ namespace WesternInn_AF_HLN_HP.Pages.Bookings
 
         public async Task OnGetAsync(string sortOrder)
         {
-            var bookings = (IQueryable<Booking>)_context.Booking;
             if (String.IsNullOrEmpty(sortOrder))
             {
                 // When the Index page is loaded for the first time, the sortOrder is empty.
                 // By default, the movies should be displayed in the order of title_asc.
                 sortOrder = "checkin_asc";
             }
-           
+            // Prepare the query for getting the entire list of movies.
+            // Convert the data type from DbSet<Movie> to IQueryable<Burger>
+
+            //retrieve currently logged in customer's email
+            string _email = User.FindFirst(ClaimTypes.Name).Value;
+            //query this customer email for Order
+            var bookings = (IQueryable<Booking>)_context.Booking;
+            //if this query has returned data
+            if (!String.IsNullOrEmpty(_email))
+            {
+                //tries to locate the search name in both GivenName and family Name
+                bookings = bookings.Where(s => s.GuestEmail.Contains(_email));
+
+            }
             // Sort the movies by specified order
             switch (sortOrder)
             {
@@ -45,10 +57,10 @@ namespace WesternInn_AF_HLN_HP.Pages.Bookings
                     bookings = bookings.OrderByDescending(m => m.CheckIn);
                     break;
                 case "cost_asc":
-                    bookings = bookings.OrderBy(m => (double)m.Cost);
+                    bookings = bookings.OrderBy(m => m.Cost);
                     break;
                 case "cost_desc":
-                    bookings = bookings.OrderByDescending(m =>(double) m.Cost);
+                    bookings = bookings.OrderByDescending(m => m.Cost);
                     break;
                
             }
