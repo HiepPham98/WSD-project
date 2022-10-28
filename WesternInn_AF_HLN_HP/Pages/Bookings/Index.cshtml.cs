@@ -12,7 +12,7 @@ using WesternInn_AF_HLN_HP.Model;
 
 namespace WesternInn_AF_HLN_HP.Pages.Bookings
 {
-    [Authorize(Roles = "Guest,Administrator")]
+    [Authorize(Roles = "Guest")]
    
     public class IndexModel : PageModel
     {
@@ -27,21 +27,13 @@ namespace WesternInn_AF_HLN_HP.Pages.Bookings
 
         public async Task OnGetAsync(string sortOrder)
         {
+            var bookings = (IQueryable<Booking>)_context.Booking;
             if (String.IsNullOrEmpty(sortOrder))
             {
                 // When the Index page is loaded for the first time, the sortOrder is empty.
                 // By default, the movies should be displayed in the order of title_asc.
                 sortOrder = "checkin_asc";
             }
-
-            //string _email = User.FindFirst(ClaimTypes.Name).Value;
-
-            var bookings = (IQueryable<Booking>)_context.Booking;
-          
-            
-                //tries to locate the search name in both GivenName and family Name
-               // bookings = bookings.Where(s => s.GuestEmail.Contains(_emai
-          
            
             // Sort the movies by specified order
             switch (sortOrder)
@@ -67,7 +59,7 @@ namespace WesternInn_AF_HLN_HP.Pages.Bookings
             ViewData["NextCheckInOrder"] = sortOrder != "checkin_asc" ? "checkin_asc" : "checkin_desc";
             ViewData["NextCostOrder"] = sortOrder != "cost_asc" ? "cost_asc" : "cost_desc";
            
-            Booking = await bookings.Include(b => b.TheRoom).Include(b => b.TheGuest).AsNoTracking().ToListAsync();
+            Booking = await bookings.Include(p => p.TheRoom).Include(p => p.TheGuest).AsNoTracking().ToListAsync();
            
         }
     }

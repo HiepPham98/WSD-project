@@ -4,11 +4,10 @@
     ViewData["Title"] = "Manage - Home";
 }
 
-
+<h1>Admin View Bookings</h1>
 
 @if (User.IsInRole("Administrator"))
 {
-    <h1>Admin View Bookings</h1>
     <p>
         <a asp-page="ManageCreate">Create New</a>
     </p>
