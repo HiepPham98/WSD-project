@@ -13,28 +13,37 @@
 <div class="row">
     <div class="col-md-4">
         <form method="post">
-           
-            <input type="hidden" asp-for="Booking.GuestEmail" value="@UserManager.GetUserName(User)" />
+            @if ((string)ViewData["ExistInDB"] == "true")
+            {
+                @* The value of the email is bound with the model. *@
+                <input type="hidden" asp-for="Booking.GuestEmail" />
+            }
+            else
+            {
+                @* The dummy value of the email is only for passing the validation.
+            It won't be used at all.     *@
+                <input type="hidden" asp-for="Booking.GuestEmail" value="@UserManager.GetUserName(User)" />
+            }
             @if (User.IsInRole("Administrator"))
             {
                 <div class="form-group">
-                    <label asp-for="Booking.GuestEmail" class="control-label"></label>
-                    <select asp-for="Booking.GuestEmail" class="form-control" asp-items="ViewBag.GuestEmail"></select>
+                    <label asp-for="Booking.RoomID" class="control-label"></label>
+                    <select asp-for="Booking.RoomID" class="form-control" asp-items="ViewBag.GuestEmail"></select>
                 </div>
             }
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Booking.RoomID" class="control-label"></label>
-                <select asp-for="Booking.RoomID" class="form-control" asp-items="ViewBag.RoomID" value="@Request.Query["RoomID"]"></select>
+                <select asp-for="Booking.RoomID" class ="form-control" asp-items="ViewBag.RoomID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Booking.CheckIn" class="control-label"></label>
-                <input asp-for="Booking.CheckIn" class="form-control" value="@Request.Query["CheckIn"]" />
+                <input asp-for="Booking.CheckIn" class="form-control" />
                 <span asp-validation-for="Booking.CheckIn" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Booking.CheckOut" class="control-label"></label>
-                <input asp-for="Booking.CheckOut" class="form-control" value="@Request.Query["CheckOut"]" />
+                <input asp-for="Booking.CheckOut" class="form-control" />
                 <span asp-validation-for="Booking.CheckOut" class="text-danger"></span>
             </div>
             <div class="form-group">

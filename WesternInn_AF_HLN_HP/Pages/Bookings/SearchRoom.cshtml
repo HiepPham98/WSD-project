@@ -66,7 +66,7 @@
                 {
                     <tr>
                         <td>
-                            <a href="Create?RoomID=@item.ID&CheckIn=@Model.Booking.CheckIn&CheckOut=@Model.Booking.CheckOut">@Html.DisplayFor(modelItem => item.ID)</a>
+                            @Html.DisplayFor(modelItem => item.ID)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Level)

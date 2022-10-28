@@ -66,10 +66,8 @@ namespace WesternInn_AF_HLN_HP.Pages.Bookings
             var bedNoParamatta = new SqliteParameter("bedNo", Room.BedCount);
 
             var availableRooms = _context.Room.FromSqlRaw("select [Room].* " +
-                                                       "from [Room] " +
-                                                       "where [Room].BedCount = @bedNo and  [Room].ID not in (" +
-                                                       "select RoomID from [Booking] where (CheckIn between @checkin and @checkout)" +
-                                                       "and (CheckOut between @checkin and @checkout));"
+                                                       "from [Room] inner join [Booking] on [Room].ID = [Booking].RoomID " +
+                                                       "where [Room].BedCount = @bedNo and [Booking].CheckIn<@checkout and [Booking].CheckOut<@checkin"
                                                        , bedNoParamatta,checkInParamatta,checkOutParamatta);
 
             AvailableRooms = await availableRooms.ToListAsync(); 
